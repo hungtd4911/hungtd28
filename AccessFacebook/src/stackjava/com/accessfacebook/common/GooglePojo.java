@@ -1,4 +1,4 @@
-package stackjava.com.accessgoogle.common;
+package stackjava.com.accessfacebook.common;
 
 public class GooglePojo {
 

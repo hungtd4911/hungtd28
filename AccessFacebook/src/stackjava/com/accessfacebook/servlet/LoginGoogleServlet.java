@@ -1,4 +1,4 @@
-package stackjava.com.accessgoogle.servlet;
+package stackjava.com.accessfacebook.servlet;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import stackjava.com.accessgoogle.common.GooglePojo;
-import stackjava.com.accessgoogle.common.GoogleUtils;
+import stackjava.com.accessfacebook.common.GooglePojo;
+import stackjava.com.accessfacebook.common.GoogleUtils;
 
 @WebServlet("/login-google")
 public class LoginGoogleServlet extends HttpServlet {
@@ -30,9 +30,9 @@ public class LoginGoogleServlet extends HttpServlet {
 		} else {
 			String accessToken = GoogleUtils.getToken(code);
 			GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-			request.setAttribute("id", googlePojo.getId());
-			request.setAttribute("name", googlePojo.getName());
-			request.setAttribute("email", googlePojo.getEmail());
+//			request.setAttribute("id", googlePojo.getId());
+//			request.setAttribute("name", googlePojo.getName());
+//			request.setAttribute("email", googlePojo.getEmail());
 			RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
 			dis.forward(request, response);
 		}

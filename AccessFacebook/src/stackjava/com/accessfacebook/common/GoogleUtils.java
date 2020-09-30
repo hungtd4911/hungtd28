@@ -1,4 +1,4 @@
-package stackjava.com.accessgoogle.common;
+package stackjava.com.accessfacebook.common;
 
 import java.io.IOException;
 
@@ -12,11 +12,11 @@ import com.google.gson.JsonObject;
 public class GoogleUtils {
 
 	public static String getToken(final String code) throws ClientProtocolException, IOException {
-		String response = Request.Post(Constants.GOOGLE_LINK_GET_TOKEN)
-				.bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
-						.add("client_secret", Constants.GOOGLE_CLIENT_SECRET)
-						.add("redirect_uri",Constants.GOOGLE_REDIRECT_URI).add("code", code)
-						.add("grant_type", Constants.GOOGLE_GRANT_TYPE).build())
+		String response = Request.Post(GoogleConstants.GOOGLE_LINK_GET_TOKEN)
+				.bodyForm(Form.form().add("client_id", GoogleConstants.GOOGLE_CLIENT_ID)
+						.add("client_secret", GoogleConstants.GOOGLE_CLIENT_SECRET)
+						.add("redirect_uri",GoogleConstants.GOOGLE_REDIRECT_URI).add("code", code)
+						.add("grant_type", GoogleConstants.GOOGLE_GRANT_TYPE).build())
 				.execute().returnContent().asString();
 
 	    JsonObject jobj = new Gson().fromJson(response, JsonObject.class);
@@ -25,7 +25,7 @@ public class GoogleUtils {
 	}
 
 	public static GooglePojo getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
-		String link = Constants.GOOGLE_LINK_GET_USER_INFO + accessToken;
+		String link = GoogleConstants.GOOGLE_LINK_GET_USER_INFO + accessToken;
 		String response = Request.Get(link).execute().returnContent().asString();
 		GooglePojo googlePojo = new Gson().fromJson(response, GooglePojo.class);
 		System.out.println(googlePojo);
